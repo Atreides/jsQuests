@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // Возьмите массив, подобный массиву users из задания 3. Напишите функцию extractProps(prop), которая по значению аргумента prop вернёт массив всех одноимённых свойств из объектов массива users.
+
+    
+    users = [{name: "Электрон", age: 19, height: 189},{name: "Пафнутий", age: 29, height: 187},{name: "Регина", age: 66, height: 175},{name: "Владлена", age: 42, height: 203},{name: "Абельгор", age: 44, height: 184},{name: "Василий", age: 39, height: 167},{name: "Ираклий", age: 43, height: 166}];
+    function extractProps(prop){
+        let result = [];
+        for (i = 0; i < users.length; i++){
+            if(prop in users[i]){
+                result.push({[prop]:users[i][prop]});
+            };
+        };
+        return result;
+    };
+    let final1 = extractProps('age');
+    console.log(final1);
+    let final2 = extractProps('height');
+    console.log(final2);
+    </script>
+</body>
+</html>

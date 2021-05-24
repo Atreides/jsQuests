@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+//         Задание 1: Сортировка карточек
+// Вам дана стопка посадочных карточек на различные виды транспорта, которые доставят вас из точки A в точку B. Карточки перепутаны, и вы не знаете, где начинается и где заканчивается ваше путешествие. Каждая карточка содержит информацию о том, откуда и куда вы едете на данном отрезке маршрута, а также о типе транспорта (номер рейса, номер места и прочее).
+// Предоставьте JavaScript API, который отсортирует такой список карточек и вернет словесное описание, как проделать ваше путешествие. API должен принимать на вход несортированный список карточек в формате придуманном вами и возвращать, например, такое описание:
+
+// • Take train 78A from Madrid to Barcelona. Seat 45B.
+// • Take the airport bus from Barcelona to Gerona Airport. No seat assignment.
+// • From Gerona Airport, take flight SK455 to Stockholm. Gate 45B. Seat 3A. Baggage drop at ticket counter 344.
+// • From Stockholm, take flight SK22 to New York JFK. Gate 22. Seat 7B. Baggage will be automatically transferred from your last leg.
+
+// Требования:
+
+// • Алгоритм должен работать с любым количеством карточек, если все карточки образуют одну неразрывную цепочку.
+// • Время прибытия и отправления неизвестно и не важно. Подразумевается, что средство передвижения для следующего отрезка дожидается вас.
+// • Структура кода должна быть расширяема для использования любых типов транспорта и информации, которая может быть связана с каждым типом транспорта.
+// • API будет вызываться из других частей JavaScript-кода без необходимости дополнительных запросов между браузером и сервером.
+// • Не используйте библиотеки и фреймворки, напишите все с нуля.
+// • Задокументируйте в коде формат входных и выходных данных.
+
+        // class PathesInfo{
+        //     constructor(transportType, from, to, info){
+        //         this.transportType = transportType;
+        //         this.from = from;
+        //         this.to = to;
+        //         this.info = info;
+        //     }
+        // }
+
+        let pathes = [];
+        //     {transportType : 'taxi', from : 'Sheremetyevo', to : 'Belorusskiy Railway Station', info :'KIA 385'},
+        //     {transportType : 'bus', from : 'Petersburg Railway Station', to : 'Pulkovo', info :'No seat'},
+        //     {transportType : 'train', from : 'Belorusskiy Railway Station', to : 'Minsk', info :'Car 7, Seat 11'},
+        //     {transportType : 'plane', from : 'Pulkovo', to : 'Sheremetyevo', info :'Gate 10A, Seat 21B'},
+        //     {transportType : 'train', from : 'Petrozavodsk', to : 'Petersburg Railway Station', info :'Car 2, Seat 36'}
+        // ];
+        
+        pathes[0]=['taxi', 'Sheremetyevo', 'Belorusskiy Railway Station', 'KIA 385'];
+        pathes[1]=['bus', 'Petersburg Railway Station',  'Pulkovo', 'No seat'];
+        pathes[2]=['train',  'Belorusskiy Railway Station',  'Minsk', 'Car 7, Seat 11'];
+        pathes[3]=['plane',  'Pulkovo', 'Sheremetyevo', 'Gate 10A, Seat 21B'];
+        pathes[4]=['train',  'Petrozavodsk', 'Petersburg Railway Station', 'Car 2, Seat 36'];
+        
+        
+
+        let final = [];
+        let l = pathes.length;
+        for (let i = 0; i < l; i++){
+            for (let y = 0; y < l; y++){
+                if (pathes[i][1] != pathes[y][2]){
+                    final[0] = pathes[i];
+                }
+            }    
+            
+        }
+        console.log(`Take ${final[0][0]} from ${final[0][1]} to ${final[0][2]}. ${final[0][3]}.\n`);
+        for (let j = 0; j < l; j++){
+            for (let u = 0; u < l; u++){
+                if (final[j][2] == pathes[u][1]){
+                    let n = j + 1;
+                    final[n] = pathes[u];
+                    console.log(`Take ${final[n][0]} from ${final[n][1]} to ${final[n][2]}. ${final[n][3]}.\n`);
+                }
+            }
+        }
+
+
+        // let i = pathes.length, dump = '', to = '';
+        // console.log(i);
+        // for (let o = 0; o < 100; o++){
+        //     for (let j = 0; j < i; j++){
+        //         for(let y = 0; y < i; y++){
+        //             let to = pathes[j][2], from = pathes[y][1];
+        //             console.log(pathes[y][2]);
+        //             if( to !== from ){
+        //                 dump = pathes[j];
+        //                 pathes[j] = pathes[y];
+        //                 pathes[y] = dump;
+        //             }
+        //         }
+        //     }
+    
+        // }
+
+        // console.log(`Take ${final[0][0]} from ${final[0][1]} to ${final[0][2]}. ${final[0][3]}.\n`);
+
+
+    </script>
+</body>
+</html>

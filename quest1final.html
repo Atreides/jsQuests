@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * @param {array} pathes - создание пустого массива для последующего наполнения его данными карточек
+        */
+        let pathes = [];
+        /**
+         * @param {array} pathes[number] - создание массивов с данными карточек, из которых собирается многомерный массив pathes
+         * массивы состоят из 4 элементов типа string: 0 - тип транспорта, 1 - точка отправления, 2 - место назначения, 3 - дополнительная информация
+         * массивы можно дополнить дополнительными элементами
+         * каждой новой карточке соответствует новый массив, кол-во карточек не ограничено
+        */ 
+        pathes[0]=['taxi', 'Sheremetyevo', 'Belorusskiy Railway Station', 'KIA 385'];
+        pathes[1]=['bus', 'Petersburg Railway Station',  'Pulkovo', 'No seat'];
+        pathes[2]=['train',  'Belorusskiy Railway Station',  'Minsk', 'Car 7, Seat 11'];
+        pathes[3]=['plane',  'Pulkovo', 'Sheremetyevo', 'Gate 10A, Seat 21B'];
+        pathes[4]=['train',  'Petrozavodsk', 'Petersburg Railway Station', 'Car 2, Seat 36'];
+        
+        
+        /**
+         * @param {array} pathes - на вход подается многомерный несортированный массив карточек
+         * @returns {string} result - на выходе выдается список из отсортированных карточек, дополненный информацией
+         */
+        function sorting(pathes){
+            let final = [];
+            let result = '';
+            let l = pathes.length;
+            for (let i = 0; i < l; i++){
+                for (let y = 0; y < l; y++){
+                    if (pathes[i][1] != pathes[y][2]){
+                        final[0] = pathes[i];
+                    }
+                }    
+            }
+            result += `Take ${final[0][0]} from ${final[0][1]} to ${final[0][2]}. ${final[0][3]}.\n`;
+            for (let j = 0; j < l; j++){
+                for (let u = 0; u < l; u++){
+                    if (final[j][2] == pathes[u][1]){
+                        let n = j + 1;
+                        final[n] = pathes[u];
+                        result += `Take ${final[n][0]} from ${final[n][1]} to ${final[n][2]}. ${final[n][3]}.\n`;
+                    }
+                }
+            }
+            return result;
+        }
+        
+        let path = sorting(pathes);
+        console.log(path);
+
+    </script>
+</body>
+</html>

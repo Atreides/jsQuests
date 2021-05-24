@@ -1,0 +1,66 @@
+// Написать тело функции reversePrint(), чтобы она при вызове доходила до самого глубокого свойства next и поднимаясь выводила числа. Например, 4,3,2,1.
+// function reversePrint (linkedList) {
+//    // ...
+// }
+// var someList = {
+//     value: 1,
+//     next: {
+//         value: 2,
+//         next: {
+//             value: 3,
+//             next: {
+//                 value: 4,
+//                 next: null
+//             }
+//         }
+//      }
+// };
+// reversePrint(someList);
+
+// Примечание: решение на JS размещать в codepen в ту вкладку, где JavaScript
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+    function reversePrint(linkedList){
+        let v = linkedList;
+        let arr = [];
+        
+        (function(){if( v.next != null ){
+            arr.unshift(v.value);
+            v = v.next;
+           return arguments.callee(v);
+        }else{
+            arr.unshift(v.value);
+            return 1;
+        }})();
+        
+        let result = arr.join(', ');
+        console.log(result);
+    }
+
+    var someList = {
+        value: 1,
+        next: {
+            value: 2,
+            next: {
+                value: 3,
+                next: {
+                    value: 4,
+                    next: null
+                }
+            }
+         }
+    };
+   
+   reversePrint(someList);
+    
+    </script>
+</body>
+</html>

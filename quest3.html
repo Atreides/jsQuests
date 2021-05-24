@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quest3</title>
+</head>
+<body>
+    <!-- Создайте массив объектов users. Каждый объект — элемент массива — должен иметь имя сотрудника, его возраст и рост. Отсортируйте массив по возрасту сотрудников (по свойству age объектов).
+
+    изначально массив не должен быть упорядочен
+    количество элементов не должно быть менее 5
+    предусмотреть возможность сортировки по разным свойствам с использованием замыкания (Пример замыкания в JavaScript — https://www.youtube.com/watch?v=8JsteOQxJZc ) -->
+    <script>
+        function Employees(name, age, height){
+            this.name = name;
+            this.age = age;
+            this.height = height;
+        };
+        names = ['Василий','Регина','Пафнутий','Электрон','Владлена','Ираклий','Абельгор'];
+        users = [];
+        function rand(n,m){
+            return Math.round(Math.random()*(m-n)+n);
+        };
+        for(let i = 0; i < 7; i++){
+            users[i] = new Employees(names[rand(0,names.length-1)], rand(15,70), rand(150,210));
+        };
+        let sortedUsers = users.sort(function(a,b){
+            return a.age - b.age;
+        });
+        console.log(sortedUsers);
+
+        //Сортировки с использованием замыкания
+        function sortByFn(property){
+            return function (obj1, obj2){
+                return obj1[property] - obj2[property];
+            }
+        };
+        function sortByString(property){
+            return function (obj1, obj2){
+                return obj1[property] > obj2[property] ? 1 : -1;
+            }
+        };
+
+        // let sortByName = users.sort(sortByString("name"));
+        // console.log(sortByName);
+        // let sortByAge = users.sort(sortByFn("age"));
+        // console.log(sortByAge);
+        // let sortByHeight = users.sort(sortByFn("height"));
+        // console.log(sortByHeight);
+    </script>
+</body>
+</html>

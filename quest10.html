@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Создайте метод у всех числовых объектов, который бы выводил значение числа от 0 до 99 в виде слов. Например число 45 должно выводиться как «сорок пять». Для выполнения задания используйте свойство prototype.
+        Number.prototype.toStr = function(num) {
+            let tens = ["двадцать","тридцать","сорок","пятьдесят","шестьдесят","семьдесят","восемьдесят","девяносто"];
+            let number = ["ноль","один","два","три","четыре","пять","шесть","семь","восемь","девять"];
+            let other = ["десять", "одиннадцать", "двенадцать", "тринадцать", "четырнадцать", "пятнадцать", "шестнадцать", "семнадцать", "восемнадцать", "девятнадцать"];
+            if(num < 10){
+                return number[num];
+            }else{
+                if(num >= 10 && num < 20){
+                    return other[num - 10];
+                }else{
+                    numArr = `${num}`.split("");
+                    return numArr.map(function(item, index, array){
+                        if(index == 0){
+                            return tens[item - 2];
+                        }else{
+                            if(item != 0){
+                                return number[item];
+                            }else{
+                                return "";
+                            }
+                            
+                        }
+                    }).filter(element => element != "").join(" ");
+                }
+            }
+        }
+        function rand(n,m){
+            return Math.round(Math.random()*(m-n)+n);
+        };
+        console.log(Number.prototype.toStr(rand(0,99)));
+    
+    </script>
+</body>
+</html>

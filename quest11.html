@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Реализовать алгоритм Дейкстры.
+        //              A
+        //            /   \
+        //           C     D
+        //           | \  /
+        //           F   E
+        //           \   | \
+        //            \  |  G
+        //             \ | /
+        //               B
+
+        let myGraph = {
+            A: {C: 7, D: 4},
+            C: {F: 1, E: 2},
+            D: {E: 3},
+            F: {B: 9},
+            E: {G: 8, B: 3},
+            G: {B: 6},
+            B: {}
+        };
+        function shortestPath(pathes, behind){
+            let result = Object.keys(pathes).reduce(function(low, node){
+                if(pathes[node] < pathes[low] || low == 0){
+                    if(!behind.includes(node)){
+                        low = node;
+                    }
+                }
+                return low;
+            },0);
+            return result;
+        };
+        function pathFinder(graph){
+            let pathes = Object.assign({B: Infinity}, graph.A);
+            let parents = {B: 0};
+            for(let child in graph.A){
+                parents[child] = 'A';
+            };
+            let behind = [];
+            let node = shortestPath(pathes, behind);
+            while(node){
+                let path = pathes[node];
+                let children = graph[node];
+                for(let i in children){
+                    let newPath = path + children[i];
+                    if(!pathes[i] || pathes[i] > newPath){
+                        pathes[i] = newPath;
+                        parents[i] = node;
+                    }
+                }
+                behind.push(node);
+                node = shortestPath(pathes,behind);
+            }
+            let calculatedPath = ['B'];
+            let parent = parents.B;
+            while(parent){
+                calculatedPath.unshift(parent);
+                parent = parents[parent];
+            };
+            let thisIsTheWay = {length: pathes.B, path: calculatedPath};
+            return thisIsTheWay;
+        };
+        console.log(pathFinder(myGraph));
+    </script>
+</body>
+</html>

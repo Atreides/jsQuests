@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Даны координаты трёх точек в декартовой системе. Определить какая из них ближе к четвёртой точке с координатами x,y. Примечания:
+        // координаты точек генерировать случайным образом
+        // решение должно выглядеть в виде функции
+        // формат хранения координат точек продумать самостоятельно, но не тратить на каждую ось по отдельной глобальной переменной
+        // рассмотреть вариант с трёхмерной системой координат
+        function Points(x, y){
+            this.x = x;
+            this.y = y;
+        };
+        let allPoints = []; // Массив для всех точек, элемент 0 - точка для сравнения
+        //Создание случайных точек в диапазонах координат от -500 до 500 (можно изменять при необходимости)
+        function rand(n,m){
+            return Math.round(Math.random()*(m-n)+n);
+        };
+        for(let i = 0; i < 4; i++){
+            allPoints[i] = new Points(rand(-500,500), rand(-500,500));
+        };
+        // console.log(allPoints);
+        //Функция вычисления ближайшей точки
+        function compare(arr){
+            let result = [];
+            let num = 0;
+            for(let i = 1; i < arr.length; i++){
+                result.push(Math.sqrt( (arr[0].x - arr[i].x)**2 + (arr[0].y - arr[i].y)**2 ));
+            };
+                (function(){
+                    let min = result[0];
+                    for (let j = 0; j < result.length; j++){
+                        if (min > result[j]){
+                            min = result[j];
+                            num = j;
+                        }
+                    }
+                    return (num += 1);
+                }
+                )();
+            return allPoints[num];
+        }
+
+        let final = compare(allPoints);
+        console.log(`Ближе всего находится точка с координатами x=${final.x} и y=${final.y}`);
+
+        //Вариант с трёхмерной системой координат
+        function Points3D(x, y, z){
+            this.x = x;
+            this.y = y;
+            this.z = z;
+        };
+        let allPoints3D = []; // Массив для всех точек, элемент 0 - точка для сравнения
+        //Создание случайных точек в диапазонах координат от -500 до 500 (можно изменять при необходимости)
+        function rand(n,m){
+            return Math.round(Math.random()*(m-n)+n);
+        };
+        for(let i = 0; i < 4; i++){
+            allPoints3D[i] = new Points3D(rand(-500,500), rand(-500,500), rand(-500,500));
+        };
+        // console.log(allPoints3D);
+        //Функция вычисления ближайшей точки
+        function compare3D(arr){
+            let result = [];
+            let num = 0;
+            for(let i = 1; i < arr.length; i++){
+                result.push(Math.sqrt( (arr[0].x - arr[i].x)**2 + (arr[0].y - arr[i].y)**2 + (arr[0].z - arr[i].z)**2));
+            };
+                (function(){
+                    let min = result[0];
+                    for (let j = 0; j < result.length; j++){
+                        if (min > result[j]){
+                            min = result[j];
+                            num = j;
+                        }
+                    }
+                    return (num += 1);
+                }
+                )();
+            return allPoints3D[num];
+        }
+
+        let final3D = compare3D(allPoints3D);
+        console.log(`Ближе всего находится точка с координатами x=${final3D.x}, y=${final3D.y} и z=${final3D.z}`);
+
+
+
+    </script>
+</body>
+</html>

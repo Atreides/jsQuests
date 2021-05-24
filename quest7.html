@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Написать функцию myReplace(s1, s2, s3), которая будет принимать три строковых аргумента s1, s2, s3 и заменять в первом аргументе s1 все слова, совпадающие со вторым аргументом s2, на третий аргумент s3.
+
+        let str = 'Жди меня, и я вернусь. Только очень жди, Жди, когда наводят грусть Желтые дожди, Жди, когда снега метут, Жди, когда жара, Жди, когда других не ждут, Позабыв вчера. Жди, когда из дальних мест Писем не придет, Жди, когда уж надоест Всем, кто вместе ждет.';
+
+        function myReplace(s1, s2, s3){
+            let result = s1.replace(new RegExp(s2,'g'),s3);
+            return result;
+        }
+        let final = myReplace(str, 'когда', 'замена');
+        console.log(final);
+    </script>
+</body>
+</html>

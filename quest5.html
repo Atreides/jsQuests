@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // В переменной str находится текст. Написать функцию, возвращающую массив объектов, свойствами которых будут отдельные слова текста, а значениями — частота встречаемости этого слова
+
+        let str = 'Жди меня, и я вернусь. Только очень жди, Жди, когда наводят грусть Желтые дожди, Жди, когда снега метут, Жди, когда жара, Жди, когда других не ждут, Позабыв вчера. Жди, когда из дальних мест Писем не придет, Жди, когда уж надоест Всем, кто вместе ждет.';
+        
+        function search(str){
+            let arr = str.toLowerCase().split(/, | |\./).filter(element => element != "");
+            let result = [];
+            let compare = [];
+            for(i = 0; i < arr.length; i++){
+                if(compare.indexOf([arr[i]].toString()) === -1){
+                    let o = {};
+                    let count = 0;
+                    for(j = 0; j < arr.length; j++){
+                        if (arr[i] == arr[j]){
+                            count +=1;
+                        }
+                    }
+                    o[arr[i]] = count;
+                    compare.push([arr[i]].toString());
+                    result.push(o);
+                }
+            }
+            return result;
+        }
+        let final = search(str);
+        console.log(final);
+    </script>
+</body>
+</html>

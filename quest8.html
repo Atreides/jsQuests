@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // Напишите функцию для фильтрации массива filterArr(inArr,filter), где inArr — входной одномерный массив, filter — функция принимающая по очереди каждый элемент inArr и возвращающая true, если этот элемент доложен входить в результат фильтрации или false, если элемент не должен попадать в результат.
+
+    // Рассмотрите варианты, когда inArr содержит (а) строки, (б) числа, (в) объекты. filter для разных случаев должна быть соответствующая.
+    // Функция filterArr(inArr,filter) должна возвращать отфильтрованный массив
+    arrStr = ['Регина','Варфоломей','Вася','Ингрид','Вася','Альберт','Джон','Вася','Арвид'];
+    arrNum = [1,3,6,50,23,4,67,78,91];
+    arrObj = [{'Регина':1990},{'Варфоломей':1974},{'Вася':1981},{'Ингрид':1996},{'Вася':2004},{'Альберт':1990},{'Джон':1981},{'Вася':1992},{'Арвид':1988}];
+
+    function filterArr(inArr,filter){
+        let result = [];
+        for (i = 0; i < inArr.length; i++){
+            if(filter(inArr[i]) == true){
+                result.push(inArr[i]);
+            };
+        };
+        return result;
+    }
+    function filterStr(arrEl){
+        if(arrEl == 'Вася'){
+            return false
+        }else{
+            return true
+        }
+    };
+    function filterNum(arrEl){
+        if(arrEl < 50 ){
+            return false
+        }else{
+            return true
+        }
+    };
+    function filterObj(arrEl){
+        if('Вася' in arrEl){
+            return false
+        }else{
+            return true
+        }
+    };
+    let filteredStr = filterArr(arrStr,filterStr);
+    console.log(filteredStr);
+    let filteredNum = filterArr(arrNum,filterNum);
+    console.log(filteredNum);
+    let filteredObj = filterArr(arrObj,filterObj);
+    console.log(filteredObj);
+    </script>
+</body>
+</html>
